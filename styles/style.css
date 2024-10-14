@@ -1,0 +1,155 @@
+/* Reset and variables
+**************************** */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main: rgb(34, 34, 34);
+  --comp: #808080;
+  --accent: #a32d18;
+  --anim-speed: 0.4s;
+}
+
+/* Global Structure
+  **************************** */
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main);
+}
+
+main,
+header,
+footer {
+  width: 100%;
+}
+
+.grid-container {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.grid-item {
+  position: relative;
+  min-width: 350px;
+  aspect-ratio: 5/3;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  transition: all var(--anim-speed) ease;
+}
+
+.grid-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../images/cards/coupal.png") center/cover no-repeat;
+  transform: scale(1);
+  transition: transform var(--anim-speed) ease,
+    opacity var(--anim-speed) ease;
+  z-index: 1;
+  opacity: 1;
+}
+
+.grid-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  transition: opacity var(--anim-speed) ease;
+  z-index: 3;
+  opacity: 0;
+}
+
+.grid-content {
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  transition: opacity var(--anim-speed) ease,
+    background-color var(--anim-speed) ease;
+  height: 100%;
+}
+
+.grid-action {
+  flex: 2;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.grid-action a{
+  color: black;
+  text-decoration: none;
+  font-size: 2em;
+  font-weight: bold;
+  border: solid black 4px;
+  border-radius: 50px;
+  padding: 10px 30px;
+}
+
+.grid-action a::after {
+  content: " >";
+}
+
+.grid-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.grid-summary{
+  font-size: 1.1em;
+  text-align: left;
+  padding: 10px 15px;
+  flex:2;
+}
+
+.grid-item:hover .grid-content {
+  opacity: 1;
+}
+
+.grid-item:hover::before {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.grid-item:hover::after {
+  opacity: 0;
+}
+
+.grid-action a:hover{
+  background-color: white;
+  transition: background-color var(--anim-speed) ease;
+}
+
+.grid-icon a img{
+  padding-right: 10px;
+  height: 1.4em; 
+  width: auto; 
+  vertical-align: middle; 
+}
+
+
