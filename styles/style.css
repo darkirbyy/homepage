@@ -1,5 +1,6 @@
-/* Reset and variables
-**************************** */
+/* ************************************************************ */
+/* Reset and variables */
+/* ************************************************************ */
 
 * {
   margin: 0;
@@ -11,11 +12,13 @@
   --main: rgb(34, 34, 34);
   --comp: #808080;
   --accent: #a32d18;
-  --anim-speed: 0.4s;
+  --anim-slow: 0.4s;
+  --anim-fast: 0.2s;
 }
 
-/* Global Structure
-  **************************** */
+/* ************************************************************ */
+/* Global Structure */
+/* ************************************************************ */
 
 body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -51,7 +54,6 @@ footer {
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
-  transition: all var(--anim-speed) ease;
 }
 
 .grid-item::before {
@@ -63,23 +65,10 @@ footer {
   height: 100%;
   background: url("../images/cards/coupal.png") center/cover no-repeat;
   transform: scale(1);
-  transition: transform var(--anim-speed) ease,
-    opacity var(--anim-speed) ease;
+  transition: transform var(--anim-slow) ease,
+    opacity var(--anim-slow) ease;
   z-index: 1;
   opacity: 1;
-}
-
-.grid-item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(255, 255, 255);
-  transition: opacity var(--anim-speed) ease;
-  z-index: 3;
-  opacity: 0;
 }
 
 .grid-content {
@@ -88,68 +77,115 @@ footer {
   opacity: 0;
   display: flex;
   flex-direction: column;
-  transition: opacity var(--anim-speed) ease,
-    background-color var(--anim-speed) ease;
+  justify-content: space-between;
+  transition: opacity var(--anim-slow) ease,
+    background-color var(--anim-slow) ease;
   height: 100%;
+}
+
+.grid-top,
+.grid-bottom {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 15px;
+  transition: transform var(--anim-slow) ease;
+}
+
+.grid-top {
+  transform: translateY(-100%);
+}
+
+.grid-bottom {
+  transform: translateY(100%);
+}
+
+.grid-summary {
+  font-size: 1.1em;
+  text-align: left;
+  flex: 2;
+}
+
+.grid-icon a {
+  /* border-radius: 50px;
+padding: 5px;
+border: solid white 2px; */
+}
+
+.grid-icon a img {
+  filter: invert(100%) opacity(0.5);
+  height: 1.4em;
+  width: auto;
+  vertical-align: middle;
+  transition: filter var(--anim-fast) ease;
 }
 
 .grid-action {
   flex: 2;
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  text-align: left;
 }
 
-.grid-action a{
-  color: black;
+.grid-action a {
   text-decoration: none;
-  font-size: 2em;
+  color: white;
+  font-size: 1.3em;
   font-weight: bold;
-  border: solid black 4px;
+  border: solid rgba(255, 255, 255, 0.5) 2px;
   border-radius: 50px;
-  padding: 10px 30px;
+  padding: 2px 20px;
+  transition: all var(--anim-fast) ease;
 }
 
 .grid-action a::after {
-  content: " >";
+  content: ">";
+  position: absolute;
+  opacity: 0;
+  transform: translateX(-100%) rotate(0deg);
+  transition: all var(--anim-fast) ease;
 }
 
-.grid-bar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
-.grid-summary{
-  font-size: 1.1em;
-  text-align: left;
-  padding: 10px 15px;
-  flex:2;
-}
-
-.grid-item:hover .grid-content {
-  opacity: 1;
-}
+/* ************************************************************ */
+/* Effects when hovering the card */
+/* ************************************************************ */
 
 .grid-item:hover::before {
   transform: scale(1.1);
   opacity: 1;
 }
 
-.grid-item:hover::after {
-  opacity: 0;
+.grid-item:hover .grid-content {
+  opacity: 1;
 }
 
-.grid-action a:hover{
-  background-color: white;
-  transition: background-color var(--anim-speed) ease;
+.grid-item:hover .grid-top {
+  transform: translateY(0);
 }
 
-.grid-icon a img{
-  padding-right: 10px;
-  height: 1.4em; 
-  width: auto; 
-  vertical-align: middle; 
+.grid-item:hover .grid-bottom {
+  transform: translateY(0);
 }
 
+/* ************************************************************ */
+/* Effects when hovering links (button or image) */
+/* ************************************************************ */
 
+.grid-action a:hover {
+  opacity: 1;
+  border-color: white;
+  padding-right: 2em;
+}
+
+.grid-action a:hover:after {
+  transform: translateX(100%) rotate(0deg);
+  opacity: 1;
+}
+
+.grid-icon a img:hover {
+  transform: scale(1.1);
+  filter: invert(100%) opacity(1);
+}
