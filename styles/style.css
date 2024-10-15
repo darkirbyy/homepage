@@ -59,7 +59,7 @@ footer {
   aspect-ratio: 5/3;
   overflow: hidden;
   border-radius: 15px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .grid-bg {
@@ -90,7 +90,6 @@ footer {
   transition: all var(--anim-slow) ease;
 }
 
-
 /* ************************************************************ */
 /* Grid TOP bar */
 /* ************************************************************ */
@@ -99,8 +98,10 @@ footer {
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
+  z-index: 5;
+  /* backdrop-filter: blur(3px); */
   transform: translateY(-100%);
-  transition: transform var(--anim-slow) ease;
+  transition: all var(--anim-slow) ease;
 }
 
 .grid-top summary {
@@ -121,23 +122,16 @@ footer {
 .grid-top .grid-extra {
   text-align: left;
   padding: 10px 15px;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  /* overflow: hidden; */
-  /* transition: all var(--anim-slow) ease; */
 }
 
 .grid-top[open] {
   flex: 2;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.grid-top[open] .grid-extra {
-  /* background-color: rgba(0, 0, 0, 0.8); */
+.grid-item:has(.grid-top[open]) .grid-bottom {
+  background-color: rgba(0, 0, 0, 0.8);
 }
-
-/* .grid-item:has(details[open]) .grid-bg img {
-    filter: blur(3px) brightness(50%);
-} */
-
 
 /* ************************************************************ */
 /* Grid BOTTOM bar */
@@ -147,14 +141,16 @@ footer {
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
+  /* backdrop-filter: blur(3px); */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   gap: 10px;
+  z-index: 5;
   align-items: center;
   padding: 10px 15px;
   transform: translateY(100%);
-  transition: transform var(--anim-slow) ease;
+  transition: all var(--anim-slow) ease;
 }
 
 .grid-icon img {
@@ -166,12 +162,12 @@ footer {
   transition: filter var(--anim-fast) ease;
 }
 
-.grid-action {
+.grid-bottom .grid-action {
   flex: 2;
   text-align: left;
 }
 
-.grid-action a {
+.grid-bottom .grid-action a {
   text-decoration: none;
   color: white;
   font-size: 1.3em;
@@ -182,7 +178,7 @@ footer {
   transition: all var(--anim-fast) ease;
 }
 
-.grid-action a::after {
+.grid-bottom .grid-action a::after {
   content: ">";
   position: absolute;
   opacity: 0;
