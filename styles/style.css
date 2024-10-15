@@ -38,6 +38,11 @@ footer {
   width: 100%;
 }
 
+
+/* ************************************************************ */
+/* Grid main structure and cards */
+/* ************************************************************ */
+
 .grid-container {
   width: 80%;
   margin: auto;
@@ -73,7 +78,6 @@ footer {
   transition: all var(--anim-slow) ease;
 }
 
-
 .grid-content {
   height: 100%;
   position: relative;
@@ -86,7 +90,59 @@ footer {
   transition: all var(--anim-slow) ease;
 }
 
-.grid-top,
+
+/* ************************************************************ */
+/* Grid TOP bar */
+/* ************************************************************ */
+
+.grid-top {
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  transform: translateY(-100%);
+  transition: transform var(--anim-slow) ease;
+}
+
+.grid-top summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.grid-top .grid-summary {
+  font-size: 1.2em;
+  text-align: left;
+  flex: 2;
+}
+
+.grid-top .grid-extra {
+  text-align: left;
+  padding: 10px 15px;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* overflow: hidden; */
+  /* transition: all var(--anim-slow) ease; */
+}
+
+.grid-top[open] {
+  flex: 2;
+}
+
+.grid-top[open] .grid-extra {
+  /* background-color: rgba(0, 0, 0, 0.8); */
+}
+
+/* .grid-item:has(details[open]) .grid-bg img {
+    filter: blur(3px) brightness(50%);
+} */
+
+
+/* ************************************************************ */
+/* Grid BOTTOM bar */
+/* ************************************************************ */
+
 .grid-bottom {
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.6);
@@ -97,30 +153,12 @@ footer {
   gap: 10px;
   align-items: center;
   padding: 10px 15px;
+  transform: translateY(100%);
   transition: transform var(--anim-slow) ease;
 }
 
-.grid-top {
-  transform: translateY(-100%);
-}
-
-.grid-bottom {
-  transform: translateY(100%);
-}
-
-.grid-summary {
-  font-size: 1.2em;
-  text-align: left;
-  flex: 2;
-}
-
-.grid-icon a {
-  /* border-radius: 50px;
-padding: 5px;
-border: solid white 2px; */
-}
-
-.grid-icon a img {
+.grid-icon img {
+  cursor: pointer;
   filter: opacity(0.5);
   height: 1.4em;
   width: auto;
@@ -159,8 +197,6 @@ border: solid white 2px; */
 
 .grid-item:hover .grid-bg img {
   transform: scale(1.1);
-  /* opacity: 1; */
-  /* filter: brightness(120%); */
 }
 
 .grid-item:hover .grid-content {
@@ -190,7 +226,7 @@ border: solid white 2px; */
   opacity: 1;
 }
 
-.grid-icon a img:hover {
+.grid-icon img:hover {
   transform: scale(1.1);
   filter: opacity(1);
 }
