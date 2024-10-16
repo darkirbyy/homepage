@@ -58,7 +58,7 @@ footer {
   max-width: 500px;
   aspect-ratio: 5/3;
   overflow: hidden;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -98,15 +98,12 @@ footer {
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  z-index: 5;
-  /* backdrop-filter: blur(3px); */
-  transform: translateY(-100%);
-  transition: all var(--anim-slow) ease;
-  display: grid;
-  grid-template-columns: auto min-content;
-  grid-template-rows: 1.2em auto;
-  grid-gap: 10px;
+  display: flex;
+  gap: 10px;
   padding: 10px 15px;
+  transform: translateY(-100%);
+  backdrop-filter: blur(3px);
+  transition: all var(--anim-slow) ease;
 }
 
 .grid-top h1 {
@@ -123,30 +120,22 @@ footer {
   list-style: none;
 }
 
-.grid-top p {
-  grid-column: 1 / -1;
-  text-align: left;
-  padding: 15px 0px; 
-  opacity: 0;
-  display: none;
-  transition: all var(--anim-slow) ease;
-  /* transform: translateY(-100%); */
-}
 
-.grid-item:has(.grid-top details[open]) .grid-top{
+/* ************************************************************ */
+/* Grid MIDDLE bar */
+/* ************************************************************ */
+
+.grid-middle {
+  background-color: rgba(0, 0, 0, 0.6);
   flex: 2;
-  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: left;
+  padding: 15px 15px;
+  opacity: 0;
+  backdrop-filter: blur(3px);
+  transition: all var(--anim-slow) ease;
 }
 
-.grid-item:has(.grid-top details[open]) .grid-top p{
-  opacity: 1;
-  display: block;
-  /* transform: translateY(0%); */
-}
-
-.grid-item:has(.grid-top details[open]) .grid-bottom {
-  background-color: rgba(0, 0, 0, 0.8);
-}
 
 /* ************************************************************ */
 /* Grid BOTTOM bar */
@@ -156,15 +145,14 @@ footer {
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  /* backdrop-filter: blur(3px); */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   gap: 10px;
-  z-index: 5;
   align-items: center;
   padding: 10px 15px;
   transform: translateY(100%);
+  backdrop-filter: blur(3px);
   transition: all var(--anim-slow) ease;
 }
 
@@ -215,11 +203,11 @@ footer {
 }
 
 .grid-item:hover .grid-top {
-  transform: translateY(0);
+  transform: translateY(0%);
 }
 
 .grid-item:hover .grid-bottom {
-  transform: translateY(0);
+  transform: translateY(0%);
 }
 
 /* ************************************************************ */
@@ -240,4 +228,21 @@ footer {
 .grid-icon img:hover {
   transform: scale(1.1);
   filter: opacity(1);
+}
+
+/* ************************************************************ */
+/* Effects when unfolding the details */
+/* ************************************************************ */
+
+.grid-item:has(.grid-top details[open]) .grid-top {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.grid-item:has(.grid-top details[open]) .grid-middle {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.grid-item:has(.grid-top details[open]) .grid-bottom {
+  background-color: rgba(0, 0, 0, 0.8);
 }
