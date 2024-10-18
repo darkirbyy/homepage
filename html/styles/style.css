@@ -10,7 +10,7 @@
 
 :root {
   --main: rgb(34, 34, 34);
-  --comp: #808080;
+  --comp: #575757;
   --accent: #a32d18;
   --anim-slow: 0.4s;
   --anim-fast: 0.2s;
@@ -21,6 +21,8 @@
 /* ************************************************************ */
 
 body {
+  max-width: 1920px;
+  margin: auto;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   text-align: center;
@@ -30,6 +32,21 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: var(--main);
+}
+
+header h1
+{
+  width:90%;
+  margin: auto;
+  text-align: left;
+  font-size: 2em;
+  padding: 2rem 0;
+  color: var(--accent);
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+footer{
+  color: var(--comp);
 }
 
 main,
@@ -47,18 +64,20 @@ footer {
   width: 80%;
   margin: auto;
   display: grid;
-  grid-gap: 50px;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-auto-rows: auto;
+  grid-gap: 50px;
+  justify-content: center;
+  justify-items: center;
 }
 
 .grid-item {
   position: relative;
-  min-width: 400px;
+  width: 100%; 
   max-width: 500px;
   aspect-ratio: 5/3;
   overflow: hidden;
-  /* border-radius: 15px; */
+  border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -94,7 +113,7 @@ footer {
 /* Grid TOP bar */
 /* ************************************************************ */
 
-.grid-top {
+.grid-top {  
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
@@ -102,7 +121,6 @@ footer {
   gap: 10px;
   padding: 10px 15px;
   transform: translateY(-100%);
-  backdrop-filter: blur(3px);
   transition: all var(--anim-slow) ease;
 }
 
@@ -132,7 +150,6 @@ footer {
   text-align: left;
   padding: 15px 15px;
   opacity: 0;
-  backdrop-filter: blur(3px);
   transition: all var(--anim-slow) ease;
 }
 
@@ -152,7 +169,6 @@ footer {
   align-items: center;
   padding: 10px 15px;
   transform: translateY(100%);
-  backdrop-filter: blur(3px);
   transition: all var(--anim-slow) ease;
 }
 
@@ -233,6 +249,10 @@ footer {
 /* ************************************************************ */
 /* Effects when unfolding the details */
 /* ************************************************************ */
+
+.grid-item:has(.grid-top details[open]) .grid-content {
+  backdrop-filter: blur(3px);
+}
 
 .grid-item:has(.grid-top details[open]) .grid-top {
   background-color: rgba(0, 0, 0, 0.8);

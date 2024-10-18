@@ -15,3 +15,7 @@ To prepare the production server :
 Work-flows configured with GitHub actions :
 
 - When pushing a tag starting with **v** : send to production server.
+
+## To-do
+
+- Improve grid container parameter : use flex instead ?
