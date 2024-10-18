@@ -19,3 +19,4 @@ Work-flows configured with GitHub actions :
 ## To-do
 
 - Improve grid container parameter : use flex instead ?
+- Write extra description for all cards

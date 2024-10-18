@@ -1,0 +1,39 @@
+name: Deploy
+run-name: ${{ github.actor }} has triggered Deploy 🚀
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Setup WARP to enable IPv6
+        uses: fscarmen/warp-on-actions@v1.2
+        with:
+          stack: dual
+
+      - name: Checkout files in the runner
+        uses: actions/checkout@v4
+
+      - name: Prepare shipping dir
+        run: |   
+          sed -i 's#(DEV)##' 'html/index.html'
+          sed -i "s#(VERSION)#${{ github.ref_name }}#" 'html/index.html'
+
+      - name: Deploy to prod on BAAL
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.BAAL_KEYS }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "html/"
+          REMOTE_HOST: ${{ vars.BAAL_ADDR }}
+          REMOTE_USER: ${{ secrets.BAAL_USER }}
+          REMOTE_PORT: ${{ secrets.BAAL_PORT }}
+          TARGET: ${{ vars.BAAL_PATH }}/${{ github.ref_name }}
+          SCRIPT_BEFORE: |
+            mkdir -p ${{ vars.BAAL_PATH }}
+          SCRIPT_AFTER: |
+            ln -snfr ${{ vars.BAAL_PATH }}/${{ github.ref_name }} ${{ vars.BAAL_PATH }}/current
