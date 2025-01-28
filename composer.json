@@ -1,6 +1,6 @@
 {
-    "name": "darkirby/symfo-base",
-    "description": "Template to quick start any Symfony project",
+    "name": "darkirby/homepage",
+    "description": "Homepage of my own server, displaying all the available services",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
